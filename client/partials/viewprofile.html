@@ -1,0 +1,32 @@
+    <h1 class="page-header" id="h1button"><a href="#/" class="btn btn-md btn-success">Go Back</a><p class="text-center">{{ userData.name }}'s Profile</p></h1>
+    <p class="text-center">Last Entered Workouts</p>
+    <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><a ng-click="sortIt('Date', userData.workouts)">Date Entered</a></th>
+              <th>Squat Rep</th>
+              <th><a ng-click="sortIt('Squat', userData.workouts)">Squat Weight</a></th>
+              <th>Deadlift Rep</th>
+              <th><a ng-click="sortIt('Deadlifts', userData.workouts)">Deadlift Weight</a></th>
+              <th>Bench Rep</th>
+              <th><a ng-click="sortIt('Bench', userData.workouts)">Bench Weight</a></th>
+              <th>OHP Rep</th>
+              <th><a ng-click="sortIt('Press', userData.workouts)">OHP Weight</a></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="data in userData.workouts">
+              <td ng-bind="data.created_at"></td>
+              <td ng-bind="data.squatRep"></td>
+              <td ng-bind="data.squatWeight"></td>
+              <td ng-bind="data.deadLiftRep"></td>
+              <td ng-bind="data.deadLiftWeight"></td>
+              <td ng-bind="data.benchRep"></td>
+              <td ng-bind="data.benchWeight"></td>
+              <td ng-bind="data.ohpRep"></td>
+              <td ng-bind="data.ohpWeight"></td>
+            </tr>
+          </tbody>
+        </table>
+	</div>

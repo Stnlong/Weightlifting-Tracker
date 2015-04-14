@@ -1,0 +1,118 @@
+    <h1 class="page-header" id="top"><a href="#/" class="btn btn-md btn-success">Go Back</a></h1>
+    <h1 id="register" class="page-header text-center">{{ loggedUser[0].name }}'s Profile</h1>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <p class="text-center">Must enter your password to update your information</p>
+        <label for="inputSquat" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-1">
+          <input type="text" class="form-control" placeholder="{{ loggedUser[0].name }}" ng-model='update.name' ng-init="update.name= loggedUser[0].name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDL" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-1">
+          <input type="email" class="form-control" placeholder="{{ loggedUser[0].email }}" ng-model='update.email' ng-init="update.email= loggedUser[0].email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputBench" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-1">
+          <input type="password" class="form-control" ng-model='update.password' ng-init="update.password= user.password">
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label for="inputOHP" class="col-sm-2 control-label">Age</label>
+        <div class="col-sm-1">
+          <input type="number" class="form-control" placeholder="{{ loggedUser[0].age }}" ng-model='update.age' ng-init="update.age= loggedUser[0].age">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputOHP" class="col-sm-2 control-label">Location</label>
+        <div class="col-sm-1">
+          <input type="text" class="form-control" placeholder="{{ user[0].location }}" ng-model='update.location' ng-init="update.location= loggedUser[0].location">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputOHP" class="col-sm-2 control-label">Weight</label>
+        <div class="col-sm-1">
+          <input type="number" class="form-control" placeholder="{{ loggedUser[0].weight }}" ng-model='update.weight' ng-init="update.weight= loggedUser[0].weight">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputOHP" class="col-sm-2 control-label">Height</label>
+        <div class="col-sm-1">
+          <input type="number" step="0.1" class="form-control" placeholder="{{ loggedUser[0].height }}" ng-model='update.height' ng-init="update.height= loggedUser[0].height">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputOHP" class="col-sm-2 control-label">Ethnicity</label>
+        <div class="col-sm-1">
+          <input type="text" class="form-control" placeholder="{{ loggedUser[0].ethnicity }}" ng-model='update.ethnicity' ng-init="update.ethnicity= loggedUser[0].ethnicity">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputOHP" class="col-sm-2 control-label">Gym</label>
+        <div class="col-sm-1">
+          <input type="text" class="form-control" placeholder="{{ user[0].gym }}" ng-model='update.gym' ng-init="update.gym= loggedUser[0].gym">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input ng-click="updateProfile(update)" type="submit" value="Update" class="btn btn-lg btn-primary">
+          <p ng-if="flash" ng-bind="flash"></p>
+        </div>
+      </div>
+    </form>
+
+    <h1 id="anchor" class="page-header text-center">Enter Your Numbers</h1>
+    <p ng-if="enterOrUpdate" class="text-center">You have already entered workout data for today and can only update.</p>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Main Lifts</label>
+        <label for="inputEmail3" class="col-sm-1 control-label">Reps</label>
+        <label for="inputEmail3" class="col-sm-1 control-label">Weight</label>
+      </div>
+      <div class="form-group">
+        <label for="inputSquat" class="col-sm-2 control-label">Squats</label>
+        <div class="col-sm-1">
+          <input type="number" class="form-control" id="inputSquatReps" placeholder="{{userData.workouts[userData.workouts.length -1].squatRep}}" ng-model='newStat.squatRep'>
+        </div>
+        <div class="col-sm-1">
+          <input type="number" class="form-control" id="inputSquatWeights" placeholder="{{userData.workouts[userData.workouts.length -1].squatWeight}}" ng-model='newStat.squatWeight'>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDL" class="col-sm-2 control-label">Deadlifts</label>
+        <div class="col-sm-1">
+          <input type="number" class="form-control" id="inputdLReps" placeholder="{{userData.workouts[userData.workouts.length -1].deadLiftRep}}" ng-model='newStat.deadLiftRep'>
+        </div>
+        <div class="col-sm-1">
+          <input type="number" class="form-control" id="inputdLWeight" placeholder="{{userData.workouts[userData.workouts.length -1].deadLiftWeight}}" ng-model='newStat.deadLiftWeight'>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputBench" class="col-sm-2 control-label">Bench Press</label>
+        <div class="col-sm-1">
+          <input type="number" class="form-control" placeholder="{{userData.workouts[userData.workouts.length -1].benchRep}}" ng-model='newStat.benchRep'>
+        </div>
+        <div class="col-sm-1">
+          <input type="number" class="form-control" id="inputBenchWeight" placeholder="{{userData.workouts[userData.workouts.length -1].benchWeight}}" ng-model='newStat.benchWeight'>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputOHP" class="col-sm-2 control-label">Overhead Press</label>
+        <div class="col-sm-1">
+          <input type="number" class="form-control" id="inputOHPReps" placeholder="{{userData.workouts[userData.workouts.length -1].ohpRep}}" ng-model='newStat.ohpRep'>
+        </div>
+        <div class="col-sm-1">
+          <input type="number" class="form-control" id="inputOHPWeight" placeholder="{{userData.workouts[userData.workouts.length -1].ohpWeight}}" ng-model='newStat.ohpWeight'>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input ng-if="enterOrUpdate != 'True'" ng-click="addWorkout(newStat)" type="submit" value="Submit" class="btn btn-lg btn-primary">
+          <input ng-if="enterOrUpdate == 'True'" ng-click="updateWorkout(newStat)" type="submit" value="Update" class="btn btn-lg btn-primary">
+        </div>
+      </div>
+    </form>

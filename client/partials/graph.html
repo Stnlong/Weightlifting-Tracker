@@ -1,0 +1,11 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-10 col-sm-offset-3 col-md-offset-1 main">
+			<h1 class="page-header"><a href="#/" class="btn btn-md btn-success">Go Back</a></h1>
+			<div ng-repeat="dataz in squatStats"><span ng-bind="dataz.weight"></span></div>
+		</div>
+		<div class="col-md-10 col-md-offset-1 main">
+			<highchart id="chart1" config="chartConfig"></highchart>
+		</div>
+	</div>
+</div>

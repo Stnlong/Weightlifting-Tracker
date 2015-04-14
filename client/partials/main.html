@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div class="row">
+    <div ng-include="template.url">
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header">Buffest - {{template.name}} <a href="#/graph" class="btn btn-md btn-primary" ng-click="getParams(
+      selected, template.name, activeData)">Plot This</a><a href="#/profile" class="btn btn-lg btn-primary pull-right" ng-if="loggedUser[0].name != null">Enter Your Stats</a></h1>
+      <ul ng-repeat="user in users | filter:filter_er | orderBy: 'created'">
+      <a href="#" ng-click="userProfile()">{{ user.name }}</a>
+      </ul>
+      <ul ng-repeat="workout in workoutsFor">
+      <span ng-bind='workout[1].id'></span>
+      </ul>
+      <div class="dropdown">
+        <select name="" id="" ng-init="selected = 'All'" ng-model="selected">
+          <option value="All">All</option>
+          <option value="Squats">Squats</option>
+          <option value="Deadlifts">Deadlifts</option>
+          <option value="Bench Press">Bench Press</option>
+          <option value="Overhead Press">Overhead Press</option>
+        </select>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><a ng-click="sortIt('Name',activeData)">Name</a></th>
+              <th><a ng-click="sortIt('Age',activeData)">Age</a></th>
+              <th>Body Weight</th>
+              <th>Height</th>
+              <th>Ethnicity</th>
+              <th>Location</th>
+              <th ng-if="selected == 'Squats' || selected == 'All'"><a ng-click="sortIt('Squat',activeData)">Squat Weight</a></th>
+              <th ng-if="selected == 'Squats' || selected == 'All'">Squat Reps</th>
+              <th ng-if="selected == 'Deadlifts' || selected == 'All'"><a ng-click="sortIt('Deadlifts',activeData)">Deadlifts Weight</a></th>
+              <th ng-if="selected == 'Deadlifts' || selected == 'All'">Deadlifts Reps</th>
+              <th ng-if="selected == 'Bench Press' || selected == 'All'"><a ng-click="sortIt('Bench',activeData)">Bench Weight</a></th>
+              <th ng-if="selected == 'Bench Press' || selected == 'All'">Bench Reps</th>
+              <th ng-if="selected == 'Overhead Press' || selected == 'All'"><a ng-click="sortIt('Press',activeData)">Press Weight</a></th>
+              <th ng-if="selected == 'Overhead Press' || selected == 'All'">Press Reps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="data in activeData">
+              <td><a href="/#viewProfile" ng-click="viewUserProfile(data._user._id)" ng-bind="data._user.name"></a></td>
+              <td ng-bind="data._user.age"></td>
+              <td ng-bind="data._user.weight"></td>
+              <td ng-bind="data._user.height"></td>
+              <td ng-bind='data._user.ethnicity'></td>
+              <td ng-bind='data._user.location'></td>
+              <td ng-if="selected == 'Squats' || selected == 'All'" ng-bind="data.squatWeight"></td>
+              <td ng-if="selected == 'Squats' || selected == 'All'" ng-bind="data.squatRep"></td>
+              <td ng-if="selected == 'Deadlifts' || selected == 'All'" ng-bind="data.deadLiftWeight"></td>
+              <td ng-if="selected == 'Deadlifts' || selected == 'All'" ng-bind="data.deadLiftRep"></td>
+              <td ng-if="selected == 'Bench Press' || selected == 'All'" ng-bind="data.benchWeight"></td>
+              <td ng-if="selected == 'Bench Press' || selected == 'All'" ng-bind="data.benchRep"></td>
+              <td ng-if="selected == 'Overhead Press' || selected == 'All'" ng-bind="data.ohpWeight"></td>
+              <td ng-if="selected == 'Overhead Press' || selected == 'All'" ng-bind="data.ohpRep"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

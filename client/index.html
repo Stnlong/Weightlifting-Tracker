@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Workout Tracker">
+    <meta name="author" content="Stephen Long">
+
+    <title>Stephen Long | Stronk</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.1.5/angular-local-storage.min.js"></script>
+    <script src="./js/highcharts-ng.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="./angular/app.js"></script>
+    <script type="text/javascript" src="./angular/factory.js"></script>
+    <script type="text/javascript" src="./angular/controller.js"></script>
+    <script type="text/javascript" src="./angular/controllers/userProfileCtrl.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="./css/dashboard.css" rel="stylesheet">
+  </head>
+
+  <body ng-controller = 'statController'>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Stronk</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a ng-bind="msg"></a></li>
+            <li ng-if="loggedUser[0].name != null">
+              <a href='#/profile'><span>{{ loggedUser[0].name }}</span></a>
+            </li>
+            <li class="dropdown" id="menu1" ng-if="loggedUser[0].name == null">
+               <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                 Login
+                  <b class="caret"></b>
+               </a>
+               <div class="dropdown-menu">
+                 <form accept-charset="UTF-8" class="col-sm-12">
+                     <input style="margin-top: 8px" type="text" placeholder="Username" ng-model='login.email'>
+                     <input style="margin-top: 8px" type="password" placeholder="Passsword" ng-model='login.password'>
+                     <input style="margin-top: 5px"class="btn btn-sm btn-primary center-block" name="commit" type="submit" value="Login" ng-click="loginAndFetch(login)">
+                   </fieldset>
+                 </form>
+               </div>
+             </li>
+             <li class="dropdown" id="menu2" ng-if="loggedUser[0].name == null">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown" >
+                  Register
+                   <b class="caret"></b>
+                </a>
+                <div class="dropdown-menu">
+                  <form style="margin: 0px" accept-charset="UTF-8">
+                    <fieldset class='textbox' style="padding:10px">
+                      <input style="margin-top: 8px" type="email" placeholder="Email" ng-model="newUser.enteredEmail">
+                      <input style="margin-top: 8px" type="text" placeholder="Username" ng-model="newUser.enteredName">
+                      <input style="margin-top: 8px" type="password" placeholder="Passsword" ng-model="newUser.password">
+                      <input style="margin-top: 5px"class="btn btn-sm btn-primary center-block" name="commit" type="submit" value="Register" ng-click="registerUser(newUser)">
+                    </fieldset>
+                  </form>
+                </div>
+              </li>
+              <li><a href="" ng-click="logOut()" ng-if="loggedUser[0].name != null">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div ng-view=""></div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/docs.min.js"></script>
+  </body>
+</html>
